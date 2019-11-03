@@ -1,0 +1,84 @@
+<h2 style="text-align:center;">Checkout List</h2>
+<form class="date-block" [formGroup]="filterForm">
+    <div class="date-block__list">
+      <mat-form-field>
+        <input #fromInput matInput 
+          [matDatepicker]="fromDate" 
+          placeholder="From Date" 
+          formControlName="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+        <mat-datepicker #fromDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+      <div class="date-block__list">
+      <mat-form-field>
+        <input #toInput matInput 
+          [matDatepicker]="toDate" 
+          placeholder="To Date" 
+          formControlName="toDate">
+        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+        <mat-datepicker #toDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+     <button mat-raised-button (click)="applyFilter()">Submit</button>
+     <!-- <button mat-raised-button (click)="resetForm(fromInput, toInput)">Reset</button> -->
+
+  </form>
+<table id="checkout" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.productid}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="barcodeNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Barcode Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.productBarcodeNumber}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="isCheckedOut">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkout Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.productIsCheckedOut}} </td>
+  </ng-container>
+  
+  <!-- Name Column -->
+  <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+      <td mat-cell *matCellDef="let element"> {{element.productQuantity}} </td>
+    </ng-container>
+    
+  <!-- Name Column -->
+  <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.userEmail}} </td>
+    </ng-container>
+      <!-- Name Column -->
+  <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Checkout Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.checkedOutDate | date:'medium'}} </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+  </mat-paginator>
+<br/>
+<div id="reports" class="row"> 
+<div class="col-sm-2"><button type="button" (click)="exportAsPdf()" class="btn btn-primary">Export As Pdf</button></div>
+<div class="col-sm-2"><button type="button" (click)="exportAsExcel()" class="btn btn-primary">Export As Excel</button></div>
+<div class="col-sm-2"><button type="button" (click)="exportAsPng()" class="btn btn-primary">Export As Png</button></div>
+<div class="col-sm-2"><button type="button" (click)="exportAsWord()" class="btn btn-primary">Export As Word</button></div>
+<div class="col-sm-8"></div>
+</div>
+
+
+

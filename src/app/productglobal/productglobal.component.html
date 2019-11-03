@@ -1,0 +1,41 @@
+<h2 style="text-align:center;">Product List</h2>
+<div class="inner">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+<table   mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  <h1 style="text-align:center;">Product List</h1>
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="barcodeNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Barcode Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.barcodeNumber}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="businessName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Business Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.businessName}} </td>
+    </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+  </mat-paginator>
+</div>

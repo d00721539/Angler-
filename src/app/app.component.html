@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="router.url!='/'">
+
+  <a class="navbar-brand" href="#">BarcodeApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="isAdmin || isLocal" class="nav-item active">
+        <a [routerLink]="['product']" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li *ngIf="isGlobal" class="nav-item active">
+        <a [routerLink]="['businessaccountlist']" class="nav-link" href="#">Home <span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="isGlobal" class="nav-item active">
+        <a [routerLink]="['productglobal']" class="nav-link">Checkedout Item List</a>
+    </li>
+      <li *ngIf="isAdmin || isLocal" class="nav-item">
+        <a [routerLink]="['/checkout']" class="nav-link">CheckOut</a>
+      </li>
+
+      <li *ngIf="isLocal" class="nav-item">
+        <a [routerLink]="['/checkedout']" class="nav-link">CheckedOut</a>
+      </li>
+      <li *ngIf="isAdmin" class="nav-item">
+        <a [routerLink]="['/checkedoutbybusiness']" class="nav-link">CheckedOut</a>
+      </li>
+
+      <li *ngIf="isLocal" class="nav-item">
+        <a [routerLink]="['/addproduct']" class="nav-link">Add Product</a>
+      </li>
+      <li *ngIf="isAdmin" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Product Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a [routerLink]="['/addproduct']" class="dropdown-item">Add Product</a>
+          <a [routerLink]="['/updateproduct']" class="dropdown-item">Update Product</a>
+          <a [routerLink]="['/deleteproduct']" class="dropdown-item">Delete Product</a>
+        </div>
+      </li>
+      <li *ngIf="isAdmin" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          User Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a [routerLink]="['/userlist']" class="dropdown-item">User List</a>
+          <a [routerLink]="['/adduser']" class="dropdown-item">Add User</a>
+          <a [routerLink]="['/updateuser']" class="dropdown-item">Update User</a>
+          <a [routerLink]="['/deleteuser']" class="dropdown-item">Delete User</a>
+        </div>
+      </li>
+      <li *ngIf="isGlobal" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Business Account Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <!-- <a [routerLink]="['/businessaccountlist']" class="dropdown-item">Business Account List</a> -->
+          <a [routerLink]="['/businessaccountadd']" class="dropdown-item">Add Business Account</a>
+          <a [routerLink]="['/businessaccountupdate']" class="dropdown-item">Update Business Account</a>
+          <a [routerLink]="['/businessaccountdisable']" class="dropdown-item">Delete Business Account</a>
+        </div>
+      </li>
+      <li *ngIf="isGlobal" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Product Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a [routerLink]="['productglobal']" class="dropdown-item">Product List</a>
+          <a [routerLink]="['/productglobalupdate']" class="dropdown-item">Update Product</a>
+          <a [routerLink]="['/productglobaldelete']" class="dropdown-item">Delete Product</a>
+        </div>
+      </li>
+
+      <li *ngIf="isGlobal" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Local User Settings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a [routerLink]="['/globaluserlist']" class="dropdown-item">Local User List</a>
+          <a [routerLink]="['/globalupdateuser']" class="dropdown-item">Update Local User</a>
+          <a [routerLink]="['/globaldeleteuser']" class="dropdown-item">Delete Local User</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Welcome {{userName}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="router.url=='/'">
+
+  <a class="navbar-brand" href="#">BarcodeApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav>
+<router-outlet>
+</router-outlet>
